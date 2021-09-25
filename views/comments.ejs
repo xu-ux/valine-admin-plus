@@ -11,14 +11,15 @@
 </head>
 
 <body>
-    <div class="comment-main">
-        <div class="header">
-            <div class="title"><span><%= title %></span>
-                <span><a class="lookOther" href="/comments/onlyBlogger?page=1">只看博主</a></span>
-                <span class="base noNeedPagination">无需分页</span>
-            </div>
-            <div class="logout-wrapper"><a href="/logout">退出登录</a></div>
+    <div class="header">
+        <div class="title"><span><%= title %></span>
+            <span><a class="lookOther layui-btn layui-btn-primary layui-border-blue" href="/comments/onlyBlogger?page=1">只看博主</a></span>
+            <span class="base noNeedPagination layui-btn layui-btn-primary layui-border-red">无需分页</span>
         </div>
+        <div class="logout-wrapper"><a href="/logout" class="layui-btn layui-btn-primary layui-border-blue">退出登录</a></div>
+    </div>
+    <div class="comment-main">
+
         <ul class="content">
             <% for(var i = 0; i < comment_list.length; i++) { %>
             <li class="vcard">
@@ -66,6 +67,11 @@
                 </div>
                 <div class="vcomment">
                     <%- comment_list[i].get('comment') %>
+
+                    <p class="ua"><%- comment_list[i].get('ua') %>
+                        <span class="tooltiptext"><%- comment_list[i].get('ua') %></span>
+                    </p>
+
                 </div>
                 <div class="check">
                     <% if(comment_list[i].get('isSpam')) { %>
@@ -118,12 +124,8 @@
             </ul> <span id="text"></span>
         </div>
         <script>
-            /*
-             * @Author: Caleb
-             * @Date: 2020-06-30 17:51:38
-             * @Last Modified by: Caleb
-             * @Last Modified time: 2020-08-26 18:12:43
-             * @desc: 此模块是分页插件模块
+            /**
+             * 分页插件
              */
             function getQueryObject(url) {
                 url = url == null ? window.location.href : url
@@ -182,13 +184,9 @@
                 }
             })
 
-
-            /*
-             * @Author: Caleb
-             * @Date: 2020-06-30 17:50:24
-             * @Last Modified by: Caleb
-             * @Last Modified time: 2020-06-30 17:51:32
-             * @decs: 此模块用来导航博主列表和全部列表
+            /**
+             * 此模块用来导航博主列表和全部列表
+             *
              */
             if (window.location.pathname.indexOf('onlyBlogger') >= 0) {
                 $('.lookOther').html('查看全部')
@@ -198,14 +196,8 @@
                 $('.lookOther').attr('href', '/comments/onlyBlogger?page=1')
             }
 
-
-
-            /*
-             * @Author: Caleb
-             * @Date: 2020-06-30 17:52:23
-             * @Last Modified by:   Caleb
-             * @Last Modified time: 2020-06-30 17:52:23
-             * @desc: 此模块为返回顶部按钮逻辑模块
+            /**
+             * 此模块为返回顶部按钮逻辑模块
              */
             var visible, isMoving, interval, visibilityHeight = 250;
             window.addEventListener("scroll", handleScroll);

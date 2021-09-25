@@ -63,10 +63,18 @@ li {
 }
 
 .header {
+	/*display: flex;*/
+	/*-ms-flex-direction: row;*/
+	/*flex-direction: row;*/
+	/*align-items: center;*/
 	display: flex;
 	-ms-flex-direction: row;
 	flex-direction: row;
+	height: 4rem;
 	align-items: center;
+	padding: 0 3rem .5rem 3rem;
+	margin-bottom: 3rem;
+	background-color: #f6f6f6;
 }
 
 .header .title {
@@ -105,6 +113,42 @@ li {
 	color: #a9a4a4;
 	display: inline-block;
 	padding: 0 5px;
+}
+
+.ua {
+	color: #a9a4a4;
+	/*display: inline-block;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+	width: 120px;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -60px; /* 使用一半宽度 (120/2 = 60) 来居中提示工具 */
+	visibility: hidden;
+	/*width: 120px;*/
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+
+	/* 定位 */
+	position: absolute;
+	z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
 }
 
 .vcomment {
